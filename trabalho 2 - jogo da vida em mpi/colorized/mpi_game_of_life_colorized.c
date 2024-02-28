@@ -88,7 +88,16 @@ int main(int argc, char *argv[]){
     #endif
   }
 
-  MPI_Scatter(global_board, N * N / size, MPI_INT, local_board, N * N / size, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Scatter(
+    global_board,
+    N * N / size,
+    MPI_INT,
+    local_board,
+    N * N / size,
+    MPI_INT,
+    0,
+    MPI_COMM_WORLD
+  );
 
   initialize_board(local_board);
 
@@ -99,7 +108,16 @@ int main(int argc, char *argv[]){
   for (int generation = 0; generation <= max_generations; generation++){
     evolve_generation(local_board, rank, size);
 
-    MPI_Gather(local_board, N * N / size, MPI_INT, global_board, N * N / size, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Gather(
+      local_board,
+      N * N / size,
+      MPI_INT,
+      global_board,
+      N * N / size,
+      MPI_INT,
+      0,
+      MPI_COMM_WORLD
+    );
 
     if (rank == 0){
       printf("\nGeração %d\n", generation);
