@@ -94,7 +94,7 @@ int main(int argc, char *argv[]){
 
   int max_generations = 10;
 
-  double start_time = MPI_Wtime(); // Record the start time
+  double start_time = MPI_Wtime();
 
   for (int generation = 0; generation <= max_generations; generation++){
     evolve_generation(local_board, rank, size);
